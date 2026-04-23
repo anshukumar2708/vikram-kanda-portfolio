@@ -1,0 +1,184 @@
+# Vikram Kanda — Next.js Portfolio
+
+Production-ready rebuild of the Vikram Kanda bodybuilder portfolio on **Next.js 15 (App Router)**, **React 19**, **TypeScript**, and **Tailwind CSS v4**. The original design, dark-first theme, animations, and content have been preserved while every technical layer has been upgraded for SEO, performance, and accessibility.
+
+> This project lives in `nextjs-app/` as a parallel implementation alongside the original Vite app. Nothing in the Vite project was modified.
+
+---
+
+## 1. Quick start
+
+```bash
+cd nextjs-app
+cp .env.example .env.local
+# edit NEXT_PUBLIC_SITE_URL (used by metadata, canonical URLs, sitemap, robots, JSON-LD)
+
+npm install
+npm run dev          # http://localhost:3000
+
+npm run build        # production build
+npm run start        # start the production server
+npm run lint         # eslint (next/core-web-vitals)
+```
+
+Node 18.18+ is required. Any package manager works (`npm`, `pnpm`, `bun`).
+
+---
+
+## 2. Folder structure
+
+```
+nextjs-app/
+├── public/
+│   └── images/                     # local hero banners
+│       ├── vikram-banner-5.png
+│       └── vikram-mobile-banner.jpg
+├── src/
+│   ├── app/                        # App Router
+│   │   ├── layout.tsx              # root layout, fonts, metadata, JSON-LD, theme provider
+│   │   ├── page.tsx                # / (home)
+│   │   ├── not-found.tsx
+│   │   ├── error.tsx               # root error boundary
+│   │   ├── globals.css             # Tailwind v4 + design tokens + utilities
+│   │   ├── robots.ts               # /robots.txt (static generation)
+│   │   ├── sitemap.ts              # /sitemap.xml (static generation)
+│   │   ├── about/page.tsx
+│   │   ├── services/page.tsx
+│   │   ├── coaching/page.tsx
+│   │   ├── transformation/page.tsx
+│   │   ├── gallery/
+│   │   │   ├── page.tsx            # server component, metadata + JSON-LD
+│   │   │   └── gallery-client.tsx  # interactive category filter
+│   │   └── contact/
+│   │       ├── page.tsx            # server component, metadata + JSON-LD
+│   │       └── contact-client.tsx  # form + info panel
+│   ├── components/
+│   │   ├── header.tsx              # sticky nav with scroll-aware backdrop
+│   │   ├── footer.tsx
+│   │   ├── theme-provider.tsx      # next-themes wrapper
+│   │   ├── theme-toggle.tsx        # hydration-safe theme switcher
+│   │   ├── json-ld.tsx             # XSS-safe structured data injector
+│   │   ├── motion/
+│   │   │   ├── reveal.tsx          # Framer Motion scroll reveal
+│   │   │   └── page-transition.tsx
+│   │   └── ui/button.tsx           # shadcn/ui primitive
+│   └── lib/
+│       ├── site.ts                 # central siteConfig (title, url, socials…)
+│       ├── images.ts               # image sources (local + Unsplash)
+│       └── utils.ts
+├── components.json                 # shadcn/ui config
+├── next.config.ts                  # remotePatterns, optimizePackageImports
+├── postcss.config.mjs              # Tailwind v4 plugin
+├── tsconfig.json                   # strict, "@/*" → "./src/*"
+└── package.json
+```
+
+---
+
+## 3. Key changes vs. the original Vite app
+
+| Concern              | Original (Vite)                         | New (Next.js)                                               |
+| -------------------- | --------------------------------------- | ----------------------------------------------------------- |
+| Router               | TanStack Router + generated route tree  | App Router — file-system routing, nested layouts            |
+| Rendering            | CSR only                                | RSC by default, selective `"use client"` where needed       |
+| Theming              | Custom `ThemeProvider`                  | `next-themes` (class strategy, system + dark default)       |
+| Tailwind             | Tailwind (legacy config)                | **Tailwind v4** via `@tailwindcss/postcss` + `@theme inline`|
+| Fonts                | `<link>` in HTML                        | `next/font` (Oswald + Inter) with CSS variables             |
+| Images               | Raw `<img>`                             | `next/image` with AVIF/WebP, `sizes`, `priority`, blur prep |
+| Animations           | Framer Motion inline                    | Shared `<Reveal>` + `<PageTransition>` respecting reduced motion |
+| SEO                  | None                                    | Metadata API, OG, Twitter, canonical URLs, dynamic per page |
+| Structured data      | None                                    | Per-page JSON-LD (Person, WebSite, AboutPage, Service, FAQPage, Product, ImageGallery, ContactPage, CreativeWork) |
+| Robots / Sitemap     | Missing                                 | `app/robots.ts` + `app/sitemap.ts` generated by Next.js     |
+| Accessibility        | Partial                                 | Skip link, `aria-current`, `aria-expanded`, `aria-pressed`, `aria-label`, keyboard focus rings, reduced-motion aware |
+| Performance          | Default bundle                          | `optimizePackageImports` for lucide + framer-motion, code-split client components |
+
+---
+
+## 4. Environment
+
+`.env.example`
+
+```env
+NEXT_PUBLIC_SITE_URL=https://vikramkanda.com
+```
+
+`NEXT_PUBLIC_SITE_URL` flows into:
+
+- `metadataBase` (used for OG + canonical)
+- `robots.ts` (`sitemap` field)
+- `sitemap.ts` (every route entry)
+- Every JSON-LD `url` field
+
+Update this in production. It must be an absolute, no-trailing-slash URL.
+
+---
+
+## 5. SEO implementation
+
+- **`metadataBase`** set at the root layout so relative OG image paths resolve correctly.
+- **Title template** — `%s | Vikram Kanda` — every page exports its own `title`.
+- **OpenGraph + Twitter** defaults at the root, overridden per page where a specific image / description is helpful.
+- **Canonical URLs** — every page sets `alternates.canonical`.
+- **Structured data** — the `<JsonLd />` component renders a safe `<script type="application/ld+json">` (escaping `<` to prevent script-closing injection) using `next/script` with `afterInteractive` strategy.
+- **robots.txt** — `app/robots.ts` returns `{ rules, sitemap }` for Next.js to statically generate `/robots.txt`.
+- **sitemap.xml** — `app/sitemap.ts` lists all 7 routes with `priority`, `changeFrequency`, and `lastModified`.
+
+---
+
+## 6. Performance
+
+- **React Server Components** — all page-level shells are server components. Only `gallery-client.tsx` and `contact-client.tsx` (state + event handlers) are marked `"use client"`. The header and theme-toggle are also client components because they need `usePathname` / localStorage.
+- **`next/image`** — every content image uses `next/image` with explicit `sizes`. The hero image on `/` and `/coaching` sets `priority` to hint the preloader.
+- **`next/font`** — Inter + Oswald are self-hosted by Next.js at build time; CSS variables feed directly into the Tailwind v4 `@theme` definition so utility classes stay fast and CLS-free.
+- **Package optimisation** — `optimizePackageImports: ["lucide-react", "framer-motion"]` in `next.config.ts` keeps the client bundle lean.
+- **Image format negotiation** — `next.config.ts` enables `image/avif` first, then `image/webp`.
+
+---
+
+## 7. Accessibility
+
+- Skip-to-main link (keyboard users).
+- Semantic landmarks: `<header>`, `<main>`, `<footer>`, `<article>`, `<figure>`, `<blockquote>`, `<cite>`, `<dl>`.
+- All interactive controls have visible focus styles (`:focus-visible` ring in `globals.css`).
+- Icon-only buttons use `aria-label`.
+- Mobile nav toggle announces state via `aria-expanded` and `aria-controls`.
+- Active route is announced with `aria-current="page"`.
+- Framer Motion respects `prefers-reduced-motion` via `useReducedMotion`.
+- Gallery filter is a proper `role="tablist"` with `aria-selected` and `aria-controls`.
+
+---
+
+## 8. Animations
+
+The shared `<Reveal>` component (`src/components/motion/reveal.tsx`) wraps any section with a scroll-triggered fade/slide animation. Props:
+
+- `direction` — `"up" | "down" | "left" | "right" | "none"`
+- `delay`, `duration`, `distance` — numeric overrides
+- `once` — defaults to `true` so animations don’t re-trigger on scroll-back
+
+It falls back to static output when `prefers-reduced-motion: reduce` is set.
+
+`<PageTransition>` wraps `children` in `src/app/layout.tsx` and animates the `pathname` change so route-to-route feels continuous.
+
+---
+
+## 9. Deployment
+
+Any Node / edge-capable host works. Recommended: **Vercel** (zero-config).
+
+```bash
+# Vercel
+vercel                  # link
+vercel --prod           # deploy
+
+# Self-host
+npm run build && npm run start
+```
+
+Before deploying, set `NEXT_PUBLIC_SITE_URL` in the platform's environment settings.
+
+---
+
+## 10. Wiring the contact form
+
+`contact-client.tsx` currently simulates a successful submit (400 ms delay) so the UX matches the original. To make it real, create an API route at `src/app/api/contact/route.ts` (e.g. forwarding to Resend, Postmark, or a Google Form webhook) and replace the `await new Promise(...)` call in `handleSubmit` with a `fetch("/api/contact", { method: "POST", body: new FormData(form) })`.
