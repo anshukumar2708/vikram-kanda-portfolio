@@ -12,8 +12,10 @@ import {
   avatar1, avatar2, avatar3, avatar4,
   physique1,
   heroBannerDesktop, heroBannerMobile,
+  videoClips,
 } from "@/lib/images";
 import { Reveal } from "@/components/motion/reveal";
+import { VideoCard } from "@/components/media/video-card";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/lib/site";
 
@@ -264,8 +266,41 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ── REELS / VIDEOS ── */}
+        <section className="py-24 bg-card/50 border-y border-border" aria-label="Video reels">
+          <div className="container mx-auto px-4 sm:px-6">
+            <Reveal className="flex items-end justify-between mb-12 flex-wrap gap-4">
+              <div>
+                <p className="text-primary uppercase tracking-[0.3em] text-sm mb-2">In Motion</p>
+                <h2 className="text-4xl md:text-6xl font-display">
+                  Reels & <span className="text-gradient">Moments</span>
+                </h2>
+                <p className="text-muted-foreground mt-3 max-w-xl">
+                  Training drills, posing practice, and behind-the-scenes clips — muted autoplay, tap for sound.
+                </p>
+              </div>
+              <Link href="/gallery" className="text-sm uppercase tracking-wider hover:text-primary transition-smooth flex items-center gap-2 group">
+                More Videos <ArrowRight className="w-4 h-4 transition-smooth group-hover:translate-x-1" />
+              </Link>
+            </Reveal>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+              {videoClips.slice(0, 4).map((v, i) => (
+                <Reveal key={v.src} delay={i * 0.08}>
+                  <VideoCard
+                    src={v.src}
+                    poster={v.poster}
+                    title={v.title}
+                    tag={v.tag}
+                    aspectClassName="aspect-[9/16]"
+                  />
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ── SERVICES SNAPSHOT ── */}
-        <section className="py-24 bg-card/50 border-y border-border" aria-label="Services">
+        <section className="py-24" aria-label="Services">
           <div className="container mx-auto px-4 sm:px-6">
             <Reveal className="text-center mb-16">
               <p className="text-primary uppercase tracking-[0.3em] text-sm mb-3">What I Offer</p>

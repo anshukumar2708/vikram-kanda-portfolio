@@ -6,8 +6,10 @@ import {
   transformation, physique1, physique2,
   competition1, competition2, gallery5, aboutPortrait,
   avatar1, avatar2, avatar3, avatar4,
+  videoClips,
 } from "@/lib/images";
 import { Reveal } from "@/components/motion/reveal";
+import { VideoCard } from "@/components/media/video-card";
 import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
@@ -113,6 +115,30 @@ export default function TransformationPage() {
                       <Image src={m.img} alt={m.title} fill sizes="(max-width: 768px) 100vw, 45vw" className="object-cover" />
                     </div>
                   </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* TRAINING REELS */}
+          <div className="mb-24">
+            <Reveal className="text-center mb-12">
+              <p className="text-primary uppercase tracking-[0.3em] text-sm mb-3">In Motion</p>
+              <h2 className="text-4xl md:text-5xl font-display">Training <span className="text-gradient">Reels</span></h2>
+              <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
+                A closer look at the workouts, drills, and stage prep that built the journey.
+              </p>
+            </Reveal>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+              {videoClips.slice(0, 8).map((v, i) => (
+                <Reveal key={v.src} delay={i * 0.06}>
+                  <VideoCard
+                    src={v.src}
+                    poster={v.poster}
+                    title={v.title}
+                    tag={v.tag}
+                    aspectClassName="aspect-[9/16]"
+                  />
                 </Reveal>
               ))}
             </div>
