@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { ScrollToTop } from "@/components/scroll-to-top";
 import { PageTransition } from "@/components/motion/page-transition";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/lib/site";
@@ -140,6 +141,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </main>
             <Footer />
           </div>
+          <ScrollToTop />
         </ThemeProvider>
         <JsonLd id="person-ld" data={personJsonLd} />
         <JsonLd id="website-ld" data={websiteJsonLd} />

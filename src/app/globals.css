@@ -99,6 +99,19 @@
 
   html {
     scroll-behavior: smooth;
+    /* Hide scrollbar in Firefox */
+    scrollbar-width: none;
+    /* Hide scrollbar in IE / legacy Edge */
+    -ms-overflow-style: none;
+  }
+
+  /* Hide scrollbar in Chromium / Safari / WebKit, globally */
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
   }
 
   body {
@@ -107,6 +120,8 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   h1,
