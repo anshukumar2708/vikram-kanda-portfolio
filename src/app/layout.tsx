@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer";
 import { PageTransition } from "@/components/motion/page-transition";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/lib/site";
+import Link from "next/link";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -125,12 +126,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${oswald.variable}`}>
       <body>
-        <a
+        <Link
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded-md"
         >
           Skip to main content
-        </a>
+        </Link>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <div className="min-h-screen flex flex-col">
             <Header />

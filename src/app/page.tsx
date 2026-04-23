@@ -66,7 +66,7 @@ export default function HomePage() {
       <JsonLd id="home-ld" data={homeJsonLd} />
       <div>
         {/* ── HERO ── */}
-        <section className="relative h-screen min-h-[40rem] w-full overflow-hidden" aria-label="Hero">
+        <section className="relative h-screen min-h-160 w-full overflow-hidden" aria-label="Hero">
           <div className="absolute right-0 top-0 inset-0 animate-ken-burns">
             <Image
               src={heroBannerDesktop}
@@ -85,11 +85,11 @@ export default function HomePage() {
               className="object-cover md:hidden"
             />
           </div>
-          <div className="absolute inset-0 bg-background/40" />
+          <div className="absolute inset-0 bg-background/20" />
 
-          <div className="relative h-full container mx-auto px-4 sm:px-6 flex flex-col justify-center pt-16 sm:pt-24">
-            <div className="max-w-3xl w-full flex flex-col items-start gap-6">
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[100px] font-display leading-[0.85] animate-fade-in-up delay-100">
+          <div className="relative h-full container mx-auto px-4 sm:px-6 flex flex-col justify-center">
+            <div className="max-w-3xl w-full flex flex-col items-start gap-6 mt-40 sm:mt-16">
+              <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[100px] font-display leading-[0.85] animate-fade-in-up delay-100">
                 VIKRAM
                 <span className="text-gradient ml-2">KANDA</span>
               </h1>
@@ -106,14 +106,14 @@ export default function HomePage() {
               <div className="flex flex-wrap gap-2 sm:gap-4 animate-fade-in-up delay-500 mt-5">
                 <Link
                   href="/coaching"
-                  className="group inline-flex items-center gap-2 bg-gradient-primary text-primary-foreground px-8 py-4 rounded-md uppercase tracking-wider text-sm font-medium btn-magnetic"
+                  className="group inline-flex items-center gap-2 bg-gradient-primary text-primary-foreground px-4 py-4 rounded-md uppercase tracking-wider text-sm font-medium btn-magnetic"
                 >
                   Connect
                   <ArrowRight className="w-4 h-4 transition-smooth group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/gallery"
-                  className="inline-flex items-center gap-2 border-2 border-primary text-foreground px-8 py-4 rounded-md uppercase tracking-wider text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-smooth hover:-translate-y-1"
+                  className="inline-flex items-center gap-2 border-2 border-primary text-foreground px-4 py-3 rounded-md uppercase tracking-wider text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-smooth hover:-translate-y-1"
                 >
                   View Gallery
                 </Link>
@@ -133,8 +133,8 @@ export default function HomePage() {
             ].map((s, i) => (
               <Reveal key={s.label} delay={i * 0.1}>
                 <div className="group p-6 border border-border rounded-xl bg-card tilt-card hover:border-primary card-glow h-full">
-                  <s.icon className="w-8 h-8 text-primary mb-4 transition-bounce group-hover:scale-125 group-hover:rotate-12" />
-                  <div className="text-4xl font-display text-gradient mb-1">{s.num}</div>
+                  <s.icon className="w-8 h-8 group-hover:text-white text-primary mb-4 transition-bounce group-hover:scale-125 group-hover:rotate-12" />
+                  <div className="text-4xl font-display group-hover:text-white text-gradient mb-1">{s.num}</div>
                   <div className="text-xs uppercase tracking-wider text-muted-foreground">{s.label}</div>
                 </div>
               </Reveal>
@@ -220,7 +220,7 @@ export default function HomePage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {achievements.map((a, i) => (
                 <Reveal key={a.title + i} delay={i * 0.08}>
-                  <div className="group p-6 border border-border rounded-xl bg-card hover-lift hover:border-primary card-glow h-full">
+                  <div className="group p-6 border border-border rounded-xl bg-card hover-lift hover:border-primary  h-full">
                     <div className="flex items-start justify-between mb-4">
                       <span className="text-xs uppercase tracking-wider border border-primary/30 text-primary px-2 py-1 rounded">{a.year}</span>
                       <a.icon className="w-6 h-6 text-primary transition-bounce group-hover:scale-125 group-hover:rotate-12" />
@@ -316,11 +316,11 @@ export default function HomePage() {
               ].map((s, i) => (
                 <Reveal key={s.title} delay={i * 0.1}>
                   <div className="group rounded-2xl overflow-hidden border border-border hover:border-primary transition-smooth card-glow h-full">
-                    <div className="image-zoom h-48 relative">
+                    <div className="image-zoom h-92 relative">
                       <Image src={s.img} alt={s.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                     </div>
                     <div className="p-6">
-                      <s.icon className="w-8 h-8 text-primary mb-3 transition-bounce group-hover:scale-125" />
+                      <s.icon className="w-8 h-8 group-hover:text-white text-primary mb-3 transition-bounce group-hover:scale-125" />
                       <h3 className="text-xl font-display mb-2">{s.title}</h3>
                       <p className="text-sm text-muted-foreground mb-4">{s.text}</p>
                       <Link href="/services" className="text-xs uppercase tracking-wider text-primary flex items-center gap-1 group/link hover:gap-3 transition-all">
@@ -364,7 +364,7 @@ export default function HomePage() {
               {testimonials.map((t, i) => (
                 <Reveal key={t.name} delay={i * 0.1}>
                   <figure className="group p-6 border border-border rounded-xl bg-card hover-lift hover:border-primary card-glow h-full">
-                    <Quote className="w-6 h-6 text-primary/40 mb-4" />
+                    <Quote className="w-6 h-6 group-hover:text-white text-primary/40 mb-4" />
                     <blockquote className="text-sm text-foreground/80 leading-relaxed mb-6 italic">&ldquo;{t.text}&rdquo;</blockquote>
                     <figcaption className="flex items-center gap-3">
                       <div className="image-zoom w-10 h-10 rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-smooth relative">

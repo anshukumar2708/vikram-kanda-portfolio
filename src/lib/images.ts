@@ -11,7 +11,7 @@
 const img = (name: string) => `/images/${encodeURI(name)}`;
 
 // ── Hero / Banner ──────────────────────────────────────────────────────────
-export const heroBannerDesktop = img("vikram-banner-5.png");
+export const heroBannerDesktop = img("vikram-banner-1.png");
 export const heroBannerMobile = img("vikram-mobile-banner.jpg");
 export const heroBanner = heroBannerDesktop;
 
@@ -21,7 +21,7 @@ export const aboutPortrait2 = img("vikram-2.jpg");
 
 // ── Transformation / Physique ──────────────────────────────────────────────
 export const transformation = img("vikram-3.jpg");
-export const physique1 = img("vikram-4.jpg");
+export const physique1 = img("vikram-4.png");
 export const physique2 = img("vikram-5.jpg");
 
 // ── Gallery (curated mix) ──────────────────────────────────────────────────

@@ -50,10 +50,10 @@ export function Header() {
       <div className="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group" aria-label="Vikram Kanda — Home">
           <div className="relative">
-            <Flame className="w-7 h-7 text-primary transition-bounce group-hover:scale-125 group-hover:rotate-12" />
+            <Flame className="w-7 h-7 sm:w-8 sm:h-8 text-primary transition-bounce group-hover:scale-125 group-hover:rotate-12" />
             <div className="absolute inset-0 bg-primary blur-xl opacity-50 group-hover:opacity-80 transition-smooth" />
           </div>
-          <span className="font-display text-2xl tracking-wider">
+          <span className="font-display text-2xl sm:text-3xl tracking-wider">
             VIKRAM<span className="text-primary">.</span>
           </span>
         </Link>
