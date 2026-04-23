@@ -60,12 +60,18 @@ const includes = [
 ];
 
 const reviews = [
-  { name: "Rohan Das", role: "Gym Enthusiast, Durg", img: avatar1, stars: 5,
-    text: "Vikram's competition experience is real. The guidance on posing and stage prep for Chhattisgarh state shows is genuinely valuable." },
-  { name: "Meera Singh", role: "Fitness Aspirant, C.G.", img: avatar2, stars: 5,
-    text: "Getting advice from someone who has actually competed at India level makes all the difference. Vikram is the real deal from Durg." },
-  { name: "Karan Joshi", role: "Bodybuilding Enthusiast", img: avatar3, stars: 5,
-    text: "As someone preparing for a Chhattisgarh state competition, guidance from an experienced competitor like Vikram is incredibly helpful." },
+  {
+    name: "Rohan Das", role: "Gym Enthusiast, Durg", img: avatar1, stars: 5,
+    text: "Vikram's competition experience is real. The guidance on posing and stage prep for Chhattisgarh state shows is genuinely valuable."
+  },
+  {
+    name: "Meera Singh", role: "Fitness Aspirant, C.G.", img: avatar2, stars: 5,
+    text: "Getting advice from someone who has actually competed at India level makes all the difference. Vikram is the real deal from Durg."
+  },
+  {
+    name: "Karan Joshi", role: "Bodybuilding Enthusiast", img: avatar3, stars: 5,
+    text: "As someone preparing for a Chhattisgarh state competition, guidance from an experienced competitor like Vikram is incredibly helpful."
+  },
 ];
 
 const offerJsonLd = {
@@ -105,7 +111,7 @@ export default function CoachingPage() {
 
           {/* HERO IMAGE */}
           <div className="relative rounded-2xl overflow-hidden mb-24 animate-fade-in">
-            <div className="image-zoom h-64 md:h-80 relative">
+            <div className="image-zoom h-[20rem] sm:h-[30rem] relative">
               <Image src={coachingImg} alt="Vikram Kanda competition prep" fill sizes="100vw" className="object-cover" priority />
             </div>
             <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/40 to-transparent" />
@@ -123,7 +129,7 @@ export default function CoachingPage() {
           </div>
 
           {/* PRICING */}
-          <div className="grid md:grid-cols-3 gap-6 mb-24 items-stretch">
+          {/* <div className="grid md:grid-cols-3 gap-6 mb-24 items-stretch">
             {plans.map((plan, i) => (
               <Reveal key={plan.name} delay={i * 0.1}>
                 <div
@@ -166,7 +172,7 @@ export default function CoachingPage() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </div> */}
 
           {/* WHY ME */}
           <div className="mb-24 py-20 border-y border-border">
@@ -183,7 +189,7 @@ export default function CoachingPage() {
                     <div className="w-14 h-14 rounded-full bg-primary/10 group-hover:bg-primary flex items-center justify-center mx-auto mb-4 transition-smooth">
                       <w.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-smooth" />
                     </div>
-                    <h3 className="font-display text-lg mb-1 group-hover:text-primary transition-smooth">{w.label}</h3>
+                    <h3 className="font-display text-lg mb-1 transition-smooth">{w.label}</h3>
                     <p className="text-sm text-muted-foreground">{w.text}</p>
                   </div>
                 </Reveal>

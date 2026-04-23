@@ -111,7 +111,7 @@ export default function ServicesPage() {
             {services.map((s, i) => (
               <Reveal key={s.title} delay={i * 0.1}>
                 <article className="group border border-border rounded-2xl bg-card hover:border-primary transition-smooth card-glow overflow-hidden h-full">
-                  <div className="image-zoom h-52 overflow-hidden relative">
+                  <div className="image-zoom h-[20rem] sm:h-[30rem] overflow-hidden relative">
                     <Image src={s.img} alt={s.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-110 transition-smooth" />
                   </div>
                   <div className="p-8 relative">

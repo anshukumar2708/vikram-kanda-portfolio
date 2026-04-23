@@ -16,7 +16,7 @@ export function Footer() {
         <div>
           <Link href="/" className="flex items-center gap-2 mb-4">
             <Flame className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
-            <span className="font-display text-2xl sm:text-3xl tracking-wider">
+            <span className="font-display text-3xl tracking-wider">
               VIKRAM<span className="text-primary">.</span>
             </span>
           </Link>
@@ -26,7 +26,7 @@ export function Footer() {
         </div>
         <nav aria-label="Footer">
           <h4 className="text-sm sm:text-base mb-4">Explore</h4>
-          <div className="flex flex-col gap-2 text-sm sm:text-base text-muted-foreground">
+          <div className="flex flex-col gap-2 text-base text-muted-foreground">
             <Link href="/about" className="hover:text-primary transition-smooth w-fit">About</Link>
             <Link href="/gallery" className="hover:text-primary transition-smooth w-fit">Gallery</Link>
             <Link href="/services" className="hover:text-primary transition-smooth w-fit">Services</Link>
@@ -34,7 +34,7 @@ export function Footer() {
           </div>
         </nav>
         <div>
-          <h4 className="text-sm sm:text-base mb-4">Connect</h4>
+          <h4 className="text-base mb-4">Connect</h4>
           <ul className="flex gap-3">
             {socials.map(({ icon: Icon, href, label }) => (
               <li key={label}>

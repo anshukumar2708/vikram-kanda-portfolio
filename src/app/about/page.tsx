@@ -76,7 +76,7 @@ export default function AboutPage() {
               The Man Behind <span className="text-gradient">The Iron</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              From the gym floors of Chandrakr Gali Santrabadi, Durg to competition stages across
+              From the gym floors of Station Road Santrabadi, Durg to competition stages across
               Chhattisgarh and India — this is the story of sweat, sacrifice, and relentless ambition.
             </p>
           </Reveal>
@@ -95,7 +95,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal direction="left" className="space-y-6">
               <p className="text-lg text-foreground/90 leading-relaxed">
-                I&apos;m <span className="text-primary font-semibold">Vikram Kanda</span> — a competitive bodybuilder and public figure from Chandrakr Gali Santrabadi, Durg, Chhattisgarh. I believe that strength is built when no one&apos;s watching. Every rep, every meal, every early morning is a brick in the temple of discipline.
+                I&apos;m <span className="text-primary font-semibold">Vikram Kanda</span> — a competitive bodybuilder and public figure from Station Road Santrabadi, Durg, Chhattisgarh. I believe that strength is built when no one&apos;s watching. Every rep, every meal, every early morning is a brick in the temple of discipline.
               </p>
               <p className="text-foreground/80 leading-relaxed">
                 Growing up in Durg, I was drawn to the iron at a young age. What started as a passion for fitness grew into a serious pursuit of competitive bodybuilding. In 2018, I won the <span className="text-primary font-semibold">Mr. Durg Bodybuilding Championship</span> — a title that represents pride for our city.
@@ -106,7 +106,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-2 gap-4 pt-4">
                 {[
                   { val: "Mr. Durg", label: "2018 Winner" },
-                  { val: "12+", label: "Years Training" },
+                  { val: "18+", label: "Years Training" },
                   { val: "C.G.", label: "State Champion" },
                   { val: "India", label: "National Stage" },
                 ].map((s) => (
@@ -128,7 +128,7 @@ export default function AboutPage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { icon: Trophy, title: "Champion", text: "Mr. Durg 2018 winner, Chhattisgarh state champion, and India-level competitor — representing Durg with pride." },
-                { icon: Target, title: "Focused", text: "12+ years of structured, dedicated training driven by a love for competitive bodybuilding." },
+                { icon: Target, title: "Focused", text: "20+ years of structured, dedicated training driven by a love for competitive bodybuilding." },
                 { icon: Heart, title: "Passionate", text: "Genuine love for the iron. The gym isn't a punishment — it's a temple of discipline and growth." },
                 { icon: Zap, title: "Inspiration", text: "A public figure in the C.G. bodybuilding community — motivating others through his journey and stage presence." },
               ].map((v, i) => (
@@ -137,7 +137,7 @@ export default function AboutPage() {
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-smooth">
                       <v.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-smooth transition-bounce group-hover:scale-110" />
                     </div>
-                    <h3 className="text-xl font-display mb-2 group-hover:text-primary transition-smooth">{v.title}</h3>
+                    <h3 className="text-xl font-display mb-2 transition-smooth">{v.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{v.text}</p>
                   </div>
                 </Reveal>
@@ -152,7 +152,7 @@ export default function AboutPage() {
                 <p className="text-primary uppercase tracking-[0.3em] text-sm">Expertise</p>
                 <h2 className="text-4xl md:text-5xl font-display">Elite <span className="text-gradient">Skills</span></h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Built over 12+ years on competition floors, state stages, and the gym in Durg, Chhattisgarh — these are the skills that define a dedicated competitive bodybuilder.
+                  Built over 18+ years on competition floors, state stages, and the gym in Durg, Chhattisgarh — these are the skills that define a dedicated competitive bodybuilder.
                 </p>
                 {skillBars.map((s, i) => (
                   <Reveal key={s.label} delay={i * 0.1} direction="none">
@@ -192,7 +192,7 @@ export default function AboutPage() {
                     <div className="w-16 h-16 rounded-full bg-primary/10 group-hover:bg-primary flex items-center justify-center mx-auto mb-4 transition-smooth">
                       <c.icon className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-smooth" />
                     </div>
-                    <h3 className="text-lg font-display mb-1 group-hover:text-primary transition-smooth">{c.title}</h3>
+                    <h3 className="text-lg font-display mb-1 transition-smooth">{c.title}</h3>
                     <p className="text-xs text-muted-foreground">{c.body}</p>
                   </div>
                 </Reveal>

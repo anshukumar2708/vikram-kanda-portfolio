@@ -7,6 +7,7 @@ import {
   competition1, competition2, gallery5, aboutPortrait,
   avatar1, avatar2, avatar3, avatar4,
   videoClips,
+  competition4,
 } from "@/lib/images";
 import { Reveal } from "@/components/motion/reveal";
 import { VideoCard } from "@/components/media/video-card";
@@ -29,7 +30,7 @@ const milestones = [
   { year: "2012", title: "First Step", text: "Walked into a gym in Durg for the first time. 58kg, skinny, unsure — but hungry for something more.", img: physique1, tag: "The Beginning" },
   { year: "2015", title: "First Competition", text: "Stepped on stage for the first time at a Chhattisgarh state-level bodybuilding show. Placed top 5.", img: competition1, tag: "CG State Debut" },
   { year: "2016", title: "Chhattisgarh Champion", text: "Won the Chhattisgarh state bodybuilding title in Classic Physique — my first championship gold.", img: competition2, tag: "CG State Gold" },
-  { year: "2018", title: "Mr. Durg — Champion", text: "Won the prestigious Mr. Durg Bodybuilding Championship in 2018 — a defining victory on home soil.", img: competition2, tag: "Mr. Durg 2018 🏆" },
+  { year: "2018", title: "Mr. Durg — Champion", text: "Won the prestigious Mr. Durg Bodybuilding Championship in 2018 — a defining victory on home soil.", img: competition4, tag: "Mr. Durg 2018 🏆" },
   { year: "2018", title: "India Level Stage", text: "Riding the momentum of the Mr. Durg title, qualified and competed at the national level championship — representing Chhattisgarh.", img: gallery5, tag: "India Level" },
   { year: "2019", title: "State Title Retained", text: "Reclaimed the Chhattisgarh state title in Men's Physique category — consistency and dedication year after year.", img: physique2, tag: "CG Champion" },
   { year: "2021", title: "Growing Presence", text: "Continued competing and growing as a public figure in Chhattisgarh's bodybuilding community.", img: aboutPortrait, tag: "Public Figure" },
@@ -76,7 +77,7 @@ export default function TransformationPage() {
           </Reveal>
 
           {/* HERO IMAGE */}
-          <div className="image-zoom rounded-2xl shadow-elegant mb-24 animate-fade-in overflow-hidden relative h-80 md:h-[32rem]">
+          <div className="image-zoom rounded-2xl shadow-elegant mb-24 animate-fade-in overflow-hidden relative h-[18rem] sm:h-[28rem]">
             <Image src={transformation} alt="Transformation physique" fill sizes="100vw" className="object-cover" priority />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
           </div>
@@ -98,7 +99,7 @@ export default function TransformationPage() {
                   className={`relative mb-12 flex flex-col md:flex-row ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-8`}
                 >
                   <div className="w-full md:w-[45%] group">
-                    <div className="p-6 border border-border bg-card rounded-xl hover-lift hover:border-primary card-glow">
+                    <div className="p-6 border border-border bg-card rounded-xl hover-lift hover:border-primary">
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-xs uppercase tracking-wider border border-primary/30 text-primary px-2 py-0.5 rounded">{m.year}</span>
                         <span className="text-xs uppercase tracking-wider text-muted-foreground">{m.tag}</span>
@@ -111,8 +112,14 @@ export default function TransformationPage() {
                   <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-primary border-4 border-card animate-pulse-glow z-10" />
 
                   <div className="w-full md:w-[45%]">
-                    <div className="image-zoom rounded-xl overflow-hidden aspect-video hover-lift relative">
-                      <Image src={m.img} alt={m.title} fill sizes="(max-width: 768px) 100vw, 45vw" className="object-cover" />
+                    <div className="image-zoom rounded-xl overflow-hidden hover-lift relative h-[400px] md:h-[500px]">
+                      <Image
+                        src={m.img}
+                        alt={m.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 45vw"
+                        className="object-cover"
+                      />
                     </div>
                   </div>
                 </Reveal>
@@ -164,10 +171,10 @@ export default function TransformationPage() {
               {competitionHighlights.map((c, i) => (
                 <Reveal key={i} delay={i * 0.1}>
                   <div className="group p-6 border border-border rounded-xl bg-card hover-lift hover:border-primary card-glow h-full">
-                    <div className="image-zoom w-16 h-16 rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-smooth mx-auto mb-4 relative">
-                      <Image src={c.img} alt={c.event} fill sizes="64px" className="object-cover" />
+                    <div className="image-zoom w-20 h-20 rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-smooth mx-auto mb-4 relative">
+                      <Image src={c.img} alt={c.event} fill sizes="80px" className="object-cover" />
                     </div>
-                    <h3 className="text-center font-display text-lg mb-4 group-hover:text-primary transition-smooth">{c.event}</h3>
+                    <h3 className="text-center font-display text-lg mb-4 transition-smooth">{c.event}</h3>
                     <dl className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <dt className="text-muted-foreground">Year</dt>
@@ -176,7 +183,7 @@ export default function TransformationPage() {
                       <div className="h-0.5 bg-border" />
                       <div className="flex justify-between">
                         <dt className="text-muted-foreground">Result</dt>
-                        <dd className="text-primary font-semibold">{c.result}</dd>
+                        <dd className="text-primary font-semibold group-hover:text-muted-foreground">{c.result}</dd>
                       </div>
                       <div className="flex justify-between">
                         <dt className="text-muted-foreground">Location</dt>

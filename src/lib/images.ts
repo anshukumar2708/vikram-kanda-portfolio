@@ -20,7 +20,7 @@ export const aboutPortrait = img("vikram-1.jpg");
 export const aboutPortrait2 = img("vikram-2.jpg");
 
 // ── Transformation / Physique ──────────────────────────────────────────────
-export const transformation = img("vikram-3.jpg");
+export const transformation = img("Rule your mind or it will rule you.jpg");
 export const physique1 = img("vikram-4.png");
 export const physique2 = img("vikram-5.jpg");
 
@@ -39,6 +39,7 @@ export const gallery9 = img("vikram-17.jpg");
 export const competition1 = img("vikram-18.jpg");
 export const competition2 = img("vikram-19.jpg");
 export const competition3 = img("vikram-20.jpg");
+export const competition4 = img("vikram-15.jpg");
 
 // ── Coaching / services imagery ────────────────────────────────────────────
 export const coachingImg = img("vikram-21.jpg");
@@ -60,7 +61,7 @@ export const extraImages: string[] = [
   img("vikram-31.jpg"),
   img("vikram-32.jpg"),
   img("vikram-33.jpg"),
-  img("vikram-34.jpg"),
+  img("vikram-5.jpg"),
   img("vikram-35.jpg"),
   img("vikram-36.jpg"),
   img("vikram-37.jpg"),
@@ -212,10 +213,10 @@ export const videoClips: VideoClip[] = [
     title: "Championship Reel",
     tag: "Highlights",
   },
-  {
-    src: img("Yatra hemkund sahib #hemkundsahib.mp4"),
-    poster: img("Yatra hemkund sahib #hemkundsahib.jpg"),
-    title: "Hemkund Sahib Yatra",
-    tag: "Off-Stage",
-  },
+  // {
+  //   src: img("Yatra hemkund sahib #hemkundsahib.mp4"),
+  //   poster: img("Yatra hemkund sahib #hemkundsahib.jpg"),
+  //   title: "Hemkund Sahib Yatra",
+  //   tag: "Off-Stage",
+  // },
 ];
