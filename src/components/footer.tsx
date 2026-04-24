@@ -43,7 +43,7 @@ export function Footer() {
                   aria-label={label}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="inline-flex p-2 rounded-full border border-border hover:bg-primary hover:border-primary hover:text-primary-foreground hover:scale-110 transition-bounce"
+                  className="heart-animate inline-flex p-2 rounded-full border border-border bg-primary hover:bg-transparent hover:text-primary-foreground hover:scale-110"
                 >
                   <Icon className="w-7 h-7" />
                 </Link>

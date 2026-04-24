@@ -204,7 +204,7 @@ export default function AboutPage() {
           <div className="relative rounded-2xl overflow-hidden">
             <div className="absolute inset-0">
               <Image src={aboutPortrait2} alt="" fill sizes="100vw" className="object-cover" aria-hidden="true" />
-              <div className="absolute inset-0 bg-background/85" />
+              <div className="absolute inset-0 bg-background/70" />
             </div>
             <div className="relative py-20 px-6 text-center max-w-3xl mx-auto">
               <Quote className="w-12 h-12 text-primary/30 mx-auto mb-6" />

@@ -63,15 +63,15 @@ export function ContactInfoPanel() {
             const isExternal = href.startsWith("http");
             return (
               <li key={label}>
-                <a
+                <Link
                   href={href}
                   aria-label={label}
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noopener noreferrer" : undefined}
-                  className="inline-flex p-3 rounded-xl border border-border hover:bg-primary hover:border-primary hover:text-primary-foreground transition-bounce hover:scale-110 hover:-translate-y-1"
+                  className="heart-animate inline-flex p-2 rounded-xl border border-border bg-primary hover:bg-transparent hover:border-primary hover:text-primary-foreground transition-bounce hover:scale-110 hover:-translate-y-1"
                 >
-                  <Icon className="w-5 h-5" />
-                </a>
+                  <Icon className="w-7 h-7" />
+                </Link>
               </li>
             );
           })}
