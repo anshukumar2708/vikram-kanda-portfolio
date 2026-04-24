@@ -20,7 +20,7 @@ const inquiryTypes = [
 export function ContactInfoPanel() {
   const items = [
     { icon: Mail, label: "Email", value: "vikram@gmail.com", href: "mailto:vikram@gmail.com" },
-    { icon: Phone, label: "Phone / WhatsApp", value: "+91 98765 XXXXX", href: "tel:+919876543210" },
+    { icon: Phone, label: "Phone / WhatsApp", value: "+91 9981680017", href: "tel:+919981680017" },
     { icon: MapPin, label: "Location", value: "Station Road Santrabadi, Durg, C.G.", href: "#" },
     { icon: Instagram, label: "Instagram", value: "@ai_vikramkanda", href: "https://www.instagram.com/ai_vikramkanda?igsh=MWd6aGtuczJvYXd0OA==" },
     { icon: Clock, label: "Response Time", value: "Within 24 hours", href: "#" },
@@ -30,7 +30,7 @@ export function ContactInfoPanel() {
     { icon: Instagram, href: "https://www.instagram.com/ai_vikramkanda?igsh=MWd6aGtuczJvYXd0OA==", label: "Instagram" },
     { icon: Youtube, href: "#", label: "YouTube" },
     { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: MessageCircle, href: "https://wa.me/9198765XXXXX", label: "WhatsApp" },
+    { icon: MessageCircle, href: "https://wa.me/919981680017", label: "WhatsApp" },
   ];
 
   return (
