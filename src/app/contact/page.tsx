@@ -8,19 +8,10 @@ import { coachingImg } from "@/lib/images";
 import { Reveal } from "@/components/motion/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/lib/site";
+import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { ContactForm, ContactInfoPanel } from "./contact-client";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Get in touch with Vikram Kanda for coaching, collaborations, event appearances, and media inquiries. Based in Durg, Chhattisgarh.",
-  alternates: { canonical: "/contact" },
-  openGraph: {
-    title: "Contact Vikram Kanda",
-    description: "Get in touch for coaching, collaborations, and inquiries.",
-    url: "/contact",
-  },
-};
+export const metadata: Metadata = buildMetadata("contact");
 
 const contactJsonLd = {
   "@context": "https://schema.org",
@@ -45,10 +36,16 @@ const contactJsonLd = {
   },
 };
 
+const contactBreadcrumb = breadcrumbJsonLd([
+  { name: "Home", path: "/" },
+  { name: "Contact", path: "/contact" },
+]);
+
 export default function ContactPage() {
   return (
     <>
       <JsonLd id="contact-ld" data={contactJsonLd} />
+      <JsonLd id="contact-breadcrumb-ld" data={contactBreadcrumb} />
       <div className="pt-32 pb-20">
         <div className="container mx-auto px-4 sm:px-6">
           {/* HEADER */}

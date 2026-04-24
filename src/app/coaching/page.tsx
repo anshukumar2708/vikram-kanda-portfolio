@@ -9,19 +9,9 @@ import { coachingImg, competition1, avatar1, avatar2, avatar3 } from "@/lib/imag
 import { Reveal } from "@/components/motion/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/lib/site";
+import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Coaching Programs",
-  description:
-    "Elite bodybuilding coaching programs by Vikram Kanda — beginner, intermediate, and competition prep plans from an India-level competitor.",
-  alternates: { canonical: "/coaching" },
-  openGraph: {
-    title: "Coaching Programs — Vikram Kanda",
-    description: "Choose from elite coaching programs — beginner, advanced, and pro plans.",
-    url: "/coaching",
-    images: [coachingImg],
-  },
-};
+export const metadata: Metadata = buildMetadata("coaching");
 
 const plans = [
   {
@@ -90,10 +80,16 @@ const offerJsonLd = {
   })),
 };
 
+const coachingBreadcrumb = breadcrumbJsonLd([
+  { name: "Home", path: "/" },
+  { name: "Coaching", path: "/coaching" },
+]);
+
 export default function CoachingPage() {
   return (
     <>
       <JsonLd id="coaching-ld" data={offerJsonLd} />
+      <JsonLd id="coaching-breadcrumb-ld" data={coachingBreadcrumb} />
       <div className="pt-32 pb-20">
         <div className="container mx-auto px-4 sm:px-6">
           {/* HEADER */}

@@ -13,25 +13,9 @@ import {
 import { Reveal } from "@/components/motion/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/lib/site";
+import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "The journey of Vikram Kanda — competitive bodybuilder and public figure from Durg, Chhattisgarh. Mr. Durg 2018, state champion, India-level competitor.",
-  alternates: { canonical: "/about" },
-  openGraph: {
-    title: "About Vikram Kanda",
-    description: "The journey of bodybuilder Vikram Kanda — from passion to profession.",
-    url: "/about",
-    type: "profile",
-    images: [portrait],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Vikram Kanda",
-    images: [portrait],
-  },
-};
+export const metadata: Metadata = buildMetadata("about");
 
 const skillBars = [
   { label: "Strength Training", pct: 98 },
@@ -53,18 +37,22 @@ const aboutJsonLd = {
   "@type": "AboutPage",
   name: "About Vikram Kanda",
   url: `${siteConfig.url}/about`,
-  mainEntity: {
-    "@type": "Person",
-    name: "Vikram Kanda",
-    jobTitle: "Competitive Bodybuilder",
-    description: siteConfig.description,
-  },
+  inLanguage: siteConfig.language,
+  description:
+    "Biography of Vikram Kanda — Mr. Durg 2018, Chhattisgarh state champion and India-level bodybuilding competitor.",
+  mainEntity: { "@id": `${siteConfig.url}/#person` },
 };
+
+const aboutBreadcrumb = breadcrumbJsonLd([
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+]);
 
 export default function AboutPage() {
   return (
     <>
       <JsonLd id="about-ld" data={aboutJsonLd} />
+      <JsonLd id="about-breadcrumb-ld" data={aboutBreadcrumb} />
       <div className="pt-32 pb-20">
         <div className="container mx-auto px-4 sm:px-6">
           {/* PAGE HEADER */}

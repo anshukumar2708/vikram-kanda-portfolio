@@ -12,19 +12,10 @@ import {
 import { Reveal } from "@/components/motion/reveal";
 import { VideoCard } from "@/components/media/video-card";
 import { JsonLd } from "@/components/json-ld";
+import { siteConfig } from "@/lib/site";
+import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Journey",
-  description:
-    "The transformation journey of Vikram Kanda — from beginnings in Durg to Chhattisgarh state champion and India-level bodybuilding competitor.",
-  alternates: { canonical: "/transformation" },
-  openGraph: {
-    title: "Transformation Journey — Vikram Kanda",
-    description: "From beginnings to bodybuilder — the full transformation journey.",
-    url: "/transformation",
-    images: [transformation],
-  },
-};
+export const metadata: Metadata = buildMetadata("transformation");
 
 const milestones = [
   { year: "2012", title: "First Step", text: "Walked into a gym in Durg for the first time. 58kg, skinny, unsure — but hungry for something more.", img: physique1, tag: "The Beginning" },
@@ -46,9 +37,16 @@ const competitionHighlights = [
 
 const journeyJsonLd = {
   "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  name: "Transformation Journey of Vikram Kanda",
-  about: { "@type": "Person", name: "Vikram Kanda" },
+  "@type": "Article",
+  headline: "Transformation Journey of Vikram Kanda",
+  description:
+    "From a 58 kg beginner in Durg to Mr. Durg 2018 winner, Chhattisgarh state champion and India-level bodybuilding competitor.",
+  inLanguage: siteConfig.language,
+  author: { "@id": `${siteConfig.url}/#person` },
+  mainEntityOfPage: `${siteConfig.url}/transformation`,
+  image: `${siteConfig.url}${siteConfig.defaultOgImage}`,
+  publisher: { "@id": `${siteConfig.url}/#person` },
+  about: { "@id": `${siteConfig.url}/#person` },
   hasPart: milestones.map((m) => ({
     "@type": "Event",
     name: m.title,
@@ -57,10 +55,16 @@ const journeyJsonLd = {
   })),
 };
 
+const journeyBreadcrumb = breadcrumbJsonLd([
+  { name: "Home", path: "/" },
+  { name: "Journey", path: "/transformation" },
+]);
+
 export default function TransformationPage() {
   return (
     <>
       <JsonLd id="journey-ld" data={journeyJsonLd} />
+      <JsonLd id="journey-breadcrumb-ld" data={journeyBreadcrumb} />
       <div className="pt-32 pb-20">
         <div className="container mx-auto px-4 sm:px-6">
           {/* HEADER */}

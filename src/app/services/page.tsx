@@ -9,19 +9,9 @@ import { coachingImg, nutritionImg, onlineImg, gallery1 } from "@/lib/images";
 import { Reveal } from "@/components/motion/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/lib/site";
+import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services",
-  description:
-    "Personal training, nutrition coaching, posing & stage craft, and competition prep by Vikram Kanda — India-level competitive bodybuilder from Durg, Chhattisgarh.",
-  alternates: { canonical: "/services" },
-  openGraph: {
-    title: "Services — Vikram Kanda",
-    description: "Training, nutrition, posing & stage craft, and competition prep.",
-    url: "/services",
-    images: [coachingImg],
-  },
-};
+export const metadata: Metadata = buildMetadata("services");
 
 const services = [
   {
@@ -86,11 +76,17 @@ const servicesJsonLd = {
   },
 };
 
+const servicesBreadcrumb = breadcrumbJsonLd([
+  { name: "Home", path: "/" },
+  { name: "Services", path: "/services" },
+]);
+
 export default function ServicesPage() {
   return (
     <>
       <JsonLd id="services-ld" data={servicesJsonLd} />
       <JsonLd id="services-faq-ld" data={faqJsonLd} />
+      <JsonLd id="services-breadcrumb-ld" data={servicesBreadcrumb} />
       <div className="pt-32 pb-20">
         <div className="container mx-auto px-4 sm:px-6">
           {/* HEADER */}

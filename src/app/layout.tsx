@@ -8,7 +8,7 @@ import { Footer } from "@/components/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { PageTransition } from "@/components/motion/page-transition";
 import { JsonLd } from "@/components/json-ld";
-import { siteConfig } from "@/lib/site";
+import { siteConfig, publishedSocialProfiles } from "@/lib/site";
 import Link from "next/link";
 
 const inter = Inter({
@@ -41,12 +41,22 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.shortTitle}`,
   },
   description: siteConfig.description,
+  applicationName: siteConfig.shortTitle,
   keywords: [...siteConfig.keywords],
-  authors: [{ name: siteConfig.author.name }],
+  authors: [{ name: siteConfig.author.name, url: siteConfig.url }],
   creator: siteConfig.author.name,
   publisher: siteConfig.author.name,
+  referrer: "origin-when-cross-origin",
+  formatDetection: { email: false, address: false, telephone: false },
   alternates: {
     canonical: "/",
+    languages: {
+      "en-IN": "/",
+      "x-default": "/",
+    },
+    types: {
+      "text/plain": [{ url: "/llms.txt", title: "LLM summary" }],
+    },
   },
   openGraph: {
     type: "website",
@@ -57,23 +67,27 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [
       {
-        url: "/images/vikram-banner-5.png",
-        width: 1920,
-        height: 1080,
-        alt: "Vikram Kanda — Bodybuilder & Public Figure",
+        url: siteConfig.defaultOgImage,
+        width: siteConfig.defaultOgImageWidth,
+        height: siteConfig.defaultOgImageHeight,
+        alt: siteConfig.defaultOgImageAlt,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
+    site: siteConfig.twitterHandle,
+    creator: siteConfig.twitterHandle,
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ["/images/vikram-banner-5.png"],
-    creator: siteConfig.twitterHandle,
+    images: [
+      { url: siteConfig.defaultOgImage, alt: siteConfig.defaultOgImageAlt },
+    ],
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -84,43 +98,91 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
+    apple: "/favicon.ico",
   },
   category: "sports",
+  classification: "Bodybuilding, Fitness, Sports Personality",
 };
 
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${siteConfig.url}/#person`,
   name: siteConfig.name,
+  alternateName: "Mr. Durg 2018",
   url: siteConfig.url,
-  image: `${siteConfig.url}/images/vikram-banner-5.png`,
+  image: `${siteConfig.url}${siteConfig.defaultOgImage}`,
   jobTitle: "Competitive Bodybuilder & Public Figure",
+  worksFor: {
+    "@type": "Organization",
+    name: "Vikram Kanda Coaching",
+  },
   description: siteConfig.description,
+  nationality: { "@type": "Country", name: "India" },
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Durg",
-    addressRegion: "Chhattisgarh",
-    addressCountry: "IN",
-    streetAddress: "Chandrakr Gali Santrabadi",
+    addressLocality: siteConfig.address.addressLocality,
+    addressRegion: siteConfig.address.addressRegion,
+    postalCode: siteConfig.address.postalCode,
+    addressCountry: siteConfig.address.addressCountry,
+    streetAddress: siteConfig.address.streetAddress,
   },
-  sameAs: [siteConfig.social.instagram].filter((u) => u && u !== "#"),
-  award: [
-    "Mr. Durg 2018 — Winner",
-    "Chhattisgarh State Bodybuilding Champion",
-    "India Level Competitor",
+  sameAs: publishedSocialProfiles(),
+  award: [...siteConfig.awards],
+  knowsAbout: [
+    "Bodybuilding",
+    "Classic Physique",
+    "Men's Physique",
+    "Strength Training",
+    "Sports Nutrition",
+    "Competition Prep",
+    "Posing & Stage Craft",
   ],
 };
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${siteConfig.url}/#website`,
   name: siteConfig.shortTitle,
+  alternateName: siteConfig.name,
   url: siteConfig.url,
-  inLanguage: "en-IN",
-  publisher: {
-    "@type": "Person",
-    name: siteConfig.name,
+  description: siteConfig.description,
+  inLanguage: siteConfig.language,
+  publisher: { "@id": `${siteConfig.url}/#person` },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteConfig.url}/gallery?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
   },
+};
+
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${siteConfig.url}/#business`,
+  name: `${siteConfig.name} — Bodybuilding Coaching`,
+  image: `${siteConfig.url}${siteConfig.defaultOgImage}`,
+  url: siteConfig.url,
+  priceRange: "₹₹",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: siteConfig.address.streetAddress,
+    addressLocality: siteConfig.address.addressLocality,
+    addressRegion: siteConfig.address.addressRegion,
+    postalCode: siteConfig.address.postalCode,
+    addressCountry: siteConfig.address.addressCountry,
+  },
+  areaServed: [
+    { "@type": "Country", name: "India" },
+    { "@type": "AdministrativeArea", name: "Chhattisgarh" },
+    { "@type": "City", name: "Durg" },
+  ],
+  founder: { "@id": `${siteConfig.url}/#person` },
+  sameAs: publishedSocialProfiles(),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -145,6 +207,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </ThemeProvider>
         <JsonLd id="person-ld" data={personJsonLd} />
         <JsonLd id="website-ld" data={websiteJsonLd} />
+        <JsonLd id="business-ld" data={localBusinessJsonLd} />
       </body>
     </html>
   );

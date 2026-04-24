@@ -8,33 +8,32 @@ import {
 import { Reveal } from "@/components/motion/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/lib/site";
+import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { GalleryClient } from "./gallery-client";
 
-export const metadata: Metadata = {
-  title: "Gallery",
-  description:
-    "Photo gallery of Vikram Kanda — training, competitions, and behind-the-scenes moments from Durg, Chhattisgarh.",
-  alternates: { canonical: "/gallery" },
-  openGraph: {
-    title: "Gallery — Vikram Kanda",
-    description: "Photo gallery of Vikram Kanda — training, competitions, and behind the scenes.",
-    url: "/gallery",
-    images: [gallery3],
-  },
-};
+export const metadata: Metadata = buildMetadata("gallery");
 
 const galleryJsonLd = {
   "@context": "https://schema.org",
   "@type": "ImageGallery",
   name: "Vikram Kanda Photo Gallery",
   url: `${siteConfig.url}/gallery`,
-  about: { "@type": "Person", name: "Vikram Kanda" },
+  inLanguage: siteConfig.language,
+  description:
+    "Photo gallery of Vikram Kanda — training, Chhattisgarh state and India-level competition moments, and behind-the-scenes shots from Durg.",
+  about: { "@id": `${siteConfig.url}/#person` },
 };
+
+const galleryBreadcrumb = breadcrumbJsonLd([
+  { name: "Home", path: "/" },
+  { name: "Gallery", path: "/gallery" },
+]);
 
 export default function GalleryPage() {
   return (
     <>
       <JsonLd id="gallery-ld" data={galleryJsonLd} />
+      <JsonLd id="gallery-breadcrumb-ld" data={galleryBreadcrumb} />
       <div className="pt-32 pb-20">
         <div className="container mx-auto px-4 sm:px-6">
           <Reveal className="max-w-3xl mb-12">

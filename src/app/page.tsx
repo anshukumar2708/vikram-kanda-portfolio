@@ -18,18 +18,15 @@ import { Reveal } from "@/components/motion/reveal";
 import { VideoCard } from "@/components/media/video-card";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/lib/site";
+import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
+// The root layout template appends "| Vikram Kanda" — override to avoid
+// that on the home page while keeping the full keyword-rich title.
 export const metadata: Metadata = {
-  title: "Home",
-  description:
-    "Official portfolio of Vikram Kanda — competitive bodybuilder and public figure from Durg, Chhattisgarh. Competing at India & CG state level.",
-  alternates: { canonical: "/" },
-  openGraph: {
-    title: siteConfig.title,
-    description:
-      "Official portfolio of Vikram Kanda — competitive bodybuilder and public figure from Durg, Chhattisgarh.",
-    url: "/",
-    images: ["/images/vikram-banner-5.png"],
+  ...buildMetadata("home"),
+  title: {
+    absolute:
+      "Vikram Kanda — Bodybuilder, Mr. Durg 2018 Winner & India-Level Competitor",
   },
 };
 
@@ -52,18 +49,20 @@ const achievements = [
 const homeJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
-  mainEntity: {
-    "@type": "Person",
-    name: "Vikram Kanda",
-    jobTitle: "Competitive Bodybuilder",
-    url: siteConfig.url,
-  },
+  url: siteConfig.url,
+  name: siteConfig.title,
+  description: siteConfig.description,
+  inLanguage: siteConfig.language,
+  mainEntity: { "@id": `${siteConfig.url}/#person` },
 };
+
+const homeBreadcrumb = breadcrumbJsonLd([{ name: "Home", path: "/" }]);
 
 export default function HomePage() {
   return (
     <>
       <JsonLd id="home-ld" data={homeJsonLd} />
+      <JsonLd id="home-breadcrumb-ld" data={homeBreadcrumb} />
       <div>
         {/* ── HERO ── */}
         <section className="relative h-screen min-h-160 w-full overflow-hidden" aria-label="Hero">
