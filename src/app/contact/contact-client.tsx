@@ -5,6 +5,7 @@ import {
   Mail, Phone, MapPin, Instagram, Send, Youtube, Facebook,
   Clock, MessageCircle, CheckCircle2,
 } from "lucide-react";
+import Link from "next/link";
 
 const inquiryTypes = [
   "Bodybuilding Guidance",
@@ -18,18 +19,18 @@ const inquiryTypes = [
 
 export function ContactInfoPanel() {
   const items = [
-    { icon: Mail, label: "Email", value: "vikram@example.com", href: "mailto:vikram@example.com" },
-    { icon: Phone, label: "Phone / WhatsApp", value: "+91 98765 43210", href: "tel:+919876543210" },
-    { icon: MapPin, label: "Location", value: "Chandrakr Gali Santrabadi, Durg, C.G.", href: "#" },
-    { icon: Instagram, label: "Instagram", value: "@vikramkanda_official", href: "https://instagram.com" },
+    { icon: Mail, label: "Email", value: "vikram@gmail.com", href: "mailto:vikram@gmail.com" },
+    { icon: Phone, label: "Phone / WhatsApp", value: "+91 98765 XXXXX", href: "tel:+919876543210" },
+    { icon: MapPin, label: "Location", value: "Station Road Santrabadi, Durg, C.G.", href: "#" },
+    { icon: Instagram, label: "Instagram", value: "@ai_vikramkanda", href: "https://www.instagram.com/ai_vikramkanda?igsh=MWd6aGtuczJvYXd0OA==" },
     { icon: Clock, label: "Response Time", value: "Within 24 hours", href: "#" },
   ];
 
   const socials = [
-    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+    { icon: Instagram, href: "https://www.instagram.com/ai_vikramkanda?igsh=MWd6aGtuczJvYXd0OA==", label: "Instagram" },
     { icon: Youtube, href: "#", label: "YouTube" },
     { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: MessageCircle, href: "https://wa.me/919876543210", label: "WhatsApp" },
+    { icon: MessageCircle, href: "https://wa.me/9198765XXXXX", label: "WhatsApp" },
   ];
 
   return (
@@ -37,7 +38,7 @@ export function ContactInfoPanel() {
       {items.map((item) => {
         const isExternal = item.href.startsWith("http");
         return (
-          <a
+          <Link
             key={item.label}
             href={item.href}
             target={isExternal ? "_blank" : undefined}
@@ -49,9 +50,9 @@ export function ContactInfoPanel() {
             </div>
             <div>
               <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">{item.label}</p>
-              <p className="font-medium group-hover:text-primary transition-smooth">{item.value}</p>
+              <p className="font-medium transition-smooth">{item.value}</p>
             </div>
-          </a>
+          </Link>
         );
       })}
 

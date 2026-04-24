@@ -42,7 +42,7 @@ export const competition3 = img("vikram-20.jpg");
 export const competition4 = img("vikram-15.jpg");
 
 // ── Coaching / services imagery ────────────────────────────────────────────
-export const coachingImg = img("vikram-21.jpg");
+export const coachingImg = img("vikram-coaching.png");
 export const nutritionImg = img("Pav bread saturday breakfast.jpg");
 export const onlineImg = img("vikram-22.jpg");
 

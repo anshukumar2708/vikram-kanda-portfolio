@@ -86,7 +86,7 @@ export default function ContactPage() {
                   <div className="w-14 h-14 rounded-full bg-primary/10 group-hover:bg-primary flex items-center justify-center mx-auto mb-4 transition-smooth">
                     <b.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-smooth" />
                   </div>
-                  <h2 className="font-display text-lg mb-2 group-hover:text-primary transition-smooth">{b.title}</h2>
+                  <h2 className="font-display text-lg mb-2 transition-smooth">{b.title}</h2>
                   <p className="text-sm text-muted-foreground leading-relaxed">{b.text}</p>
                 </div>
               </Reveal>
@@ -95,10 +95,10 @@ export default function ContactPage() {
 
           {/* BANNER */}
           <div className="relative rounded-2xl overflow-hidden">
-            <div className="image-zoom h-64 md:h-80 relative">
+            <div className="image-zoom h-[40rem] relative">
               <Image src={coachingImg} alt="" fill sizes="100vw" className="object-cover" aria-hidden="true" />
             </div>
-            <div className="absolute inset-0 bg-background/75" />
+            <div className="absolute inset-0 bg-background/60" />
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
               <p className="text-primary uppercase tracking-[0.3em] text-sm mb-3">Ready?</p>
               <h2 className="text-3xl md:text-5xl font-display mb-4">Your <span className="text-gradient">Transformation</span> Awaits</h2>

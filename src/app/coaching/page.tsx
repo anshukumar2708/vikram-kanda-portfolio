@@ -111,7 +111,7 @@ export default function CoachingPage() {
 
           {/* HERO IMAGE */}
           <div className="relative rounded-2xl overflow-hidden mb-24 animate-fade-in">
-            <div className="image-zoom h-[20rem] sm:h-[30rem] relative">
+            <div className="image-zoom h-[30rem] sm:h-[35rem] relative">
               <Image src={coachingImg} alt="Vikram Kanda competition prep" fill sizes="100vw" className="object-cover" priority />
             </div>
             <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/40 to-transparent" />
@@ -200,8 +200,14 @@ export default function CoachingPage() {
           {/* WHAT'S INCLUDED */}
           <div className="mb-24">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <Reveal direction="right" className="image-zoom rounded-2xl overflow-hidden aspect-[4/3] shadow-elegant relative">
-                <Image src={competition1} alt="Competition coaching" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+              <Reveal className="image-zoom rounded-2xl overflow-hidden h-[500px] md:h-[600px] shadow-elegant relative">
+                <Image
+                  src={competition1}
+                  alt="Competition coaching"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
               </Reveal>
               <Reveal direction="left" className="space-y-6">
                 <p className="text-primary uppercase tracking-[0.3em] text-sm">What You Get</p>
@@ -239,7 +245,7 @@ export default function CoachingPage() {
                   <figure className="group p-6 border border-border rounded-xl bg-card hover-lift hover:border-primary card-glow h-full">
                     <div className="flex gap-1 mb-4">
                       {Array.from({ length: r.stars }).map((_, s) => (
-                        <Star key={s} className="w-4 h-4 fill-primary text-primary" />
+                        <Star key={s} className="w-4 h-4 fill-primary text-primary group-hover:text-yellow-500 group-hover:fill-yellow-500" />
                       ))}
                     </div>
                     <blockquote className="text-sm text-foreground/80 leading-relaxed mb-6 italic">&ldquo;{r.text}&rdquo;</blockquote>
