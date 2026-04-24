@@ -85,7 +85,7 @@ export default function HomePage() {
               className="object-cover md:hidden"
             />
           </div>
-          <div className="absolute inset-0 bg-background/20" />
+          <div className="absolute inset-0 bg-background/30" />
 
           <div className="relative h-full container mx-auto px-4 sm:px-6 flex flex-col justify-center">
             <div className="max-w-3xl w-full flex flex-col items-start gap-6 mt-40 sm:mt-16">
